@@ -438,22 +438,15 @@ def SearchBeward(devices):
 
 def ConfigXM(data):
     config = {}
+    #TODO: may be just copy whwole devices[data[1]] to config?
+    for k in [u"HostName",u"HttpPort",u"MAC",u"MaxBps",u"MonMode",u"SSLPort",u"TCPMaxConn",u"TCPPort",u"TransferPlan",u"UDPPort","UseHSDownLoad"]:
+        if k in devices[data[1]]:
+            config[k] = devices[data[1]][k]
     config[u"DvrMac"] = devices[data[1]][u"MAC"]
     config[u"EncryptType"] = 1
     config[u"GateWay"] = SetIP(data[4])
     config[u"HostIP"] = SetIP(data[2])
-    config[u"HostName"] = devices[data[1]][u"HostName"]
-    config[u"HttpPort"] = devices[data[1]][u"HttpPort"]
-    config[u"MAC"] = devices[data[1]][u"MAC"]
-    config[u"MaxBps"] = devices[data[1]][u"MaxBps"]
-    config[u"MonMode"] = devices[data[1]][u"MonMode"]
-    config[u"SSLPort"] = devices[data[1]][u"SSLPort"]
     config[u"Submask"] = SetIP(data[3])
-    config[u"TCPMaxConn"] = devices[data[1]][u"TCPMaxConn"]
-    config[u"TCPPort"] = devices[data[1]][u"TCPPort"]
-    config[u"TransferPlan"] = devices[data[1]][u"TransferPlan"]
-    config[u"UDPPort"] = devices[data[1]][u"UDPPort"]
-    config[u"UseHSDownLoad"] = devices[data[1]][u"UseHSDownLoad"]
     config[u"Username"] = "admin"
     config[u"Password"] = sofia_hash(data[5])
     devices[data[1]][u"GateWay"] = config[u"GateWay"]
