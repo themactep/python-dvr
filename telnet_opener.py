@@ -47,9 +47,12 @@ XMV4 = {
     ],
 }
 
+
 def down(template, filename):
-    template['downgrade'] = filename
-    return template
+    t = template.copy()
+    t['downgrade'] = filename
+    return t
+
 
 # Borrowed from InstallDesc
 conf = {
